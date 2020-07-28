@@ -3,7 +3,7 @@
 """
 Created on Thu Jul  9 20:42:43 2020
 
-@author: pi
+@author: hz
 """
 
 import time
@@ -42,8 +42,8 @@ def detectMetal(ini_time, times, state_, tp_list, ct_list):
         print("Please initial input pin")
     return ini_time, times, state_,tp_list, ct_list
 
-def save_csv(times, tp_list, ct_list):
-    if times % 10 == 0 and times != 0:
+def save_csv(times, tp_list, ct_list, limit = 100):
+    if times % limit == 0 and times != 0:
         pd_dict = {"time_stamp": tp_list,
                    "CT": ct_list}
         df = pd.DataFrame.from_dict(pd_dict)
@@ -68,4 +68,4 @@ if __name__ == '__main__':
     while True:
         ini_time, times, state_,tp_list, ct_list = detectMetal(ini_time,times,state_,tp_list, ct_list)
         tp_list, ct_list, times = save_csv(times, tp_list, ct_list)
-        time.sleep(0.01)
+        time.sleep(0.005)
